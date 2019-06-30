@@ -35,7 +35,7 @@ public class ConsoleParser {
                         numberOfSymbols = Integer.parseInt(args[++i]);
                     }
                     catch (IndexOutOfBoundsException e) {
-                        System.out.println("Incorrect command format");
+                        throw new IllegalArgumentException("Incorrect command format");
                     }
                     break;
                 case "-n":
@@ -44,7 +44,7 @@ public class ConsoleParser {
                         numberOfLines = Integer.parseInt(args[++i]);
                     }
                     catch (IndexOutOfBoundsException e) {
-                        System.out.println("Incorrect command format");
+                        throw new IllegalArgumentException("Incorrect command format");
                     }
                     break;
                 case "-o":
@@ -53,7 +53,7 @@ public class ConsoleParser {
                         outputFile = true;
                     }
                     catch (IndexOutOfBoundsException e) {
-                        System.out.println("Incorrect command format");
+                        throw new IllegalArgumentException("Incorrect command format");
                     }
                     break;
                 default:
@@ -63,10 +63,9 @@ public class ConsoleParser {
                     }
                     else inputText.add(args[i]);
 
-
             }
         }
-        if (processLines && processSymbols) throw new IllegalArgumentException("Incorrect command format");
+        if (processLines && processSymbols) throw new IllegalArgumentException("'-c' and '-n' commands can't be together");
     }
 
     public List<String> getInputText() {

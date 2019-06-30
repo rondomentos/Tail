@@ -21,9 +21,12 @@ public class Tailer {
         return result;
     }
 
+
     public List<String> lineCut(int amountOfLines, List<String> linesFromFile) {
         for (int i = linesFromFile.size() - amountOfLines; i < linesFromFile.size(); i++)
-            result.add(linesFromFile.get(i));
+            if (linesFromFile.size() > Math.abs(i)) {
+                result.add(linesFromFile.get(i));
+            }
         return result;
     }
 }
